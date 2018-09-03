@@ -1,6 +1,8 @@
 package com.docvault;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,9 +47,12 @@ public class RegistrationActivity extends AppCompatActivity {
             UserDetails userDetails = new UserDetails(userName, passWord);
             Prefs.putString(userDetails.getKey(), userDetails.getValue());
             Toast.makeText(this, "!! New User Added !!", Toast.LENGTH_LONG).show();
+            new Handler().postDelayed(null, 2000);
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         }
         else {
-
+            Toast.makeText(this, "Passwords don't match", Toast.LENGTH_SHORT).show();
         }
     }
 }

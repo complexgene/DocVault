@@ -8,8 +8,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.docvault.base.AppClass;
+import com.docvault.pojo.PrescriptionDetailsPojo;
 import com.docvault.pojo.UserDetails;
 import com.pixplicity.easyprefs.library.Prefs;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
@@ -25,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void init() {
-        tvUserName = findViewById(R.id.tvLoginPassword);
+        tvUserName = findViewById(R.id.tvLoginUserName);
         tvPassword = findViewById(R.id.tvLoginPassword);
     }
 
@@ -47,6 +53,14 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Sorry!! The credentials are wrong!!", Toast.LENGTH_SHORT).show();
         }
         else {
+            List<PrescriptionDetailsPojo> prescriptionDetailsPojoList = new ArrayList<>();
+            PrescriptionDetailsPojo prescriptionDetailsPojo = new PrescriptionDetailsPojo();
+            prescriptionDetailsPojo.setDoctorName("Dr. Hendrix");
+            prescriptionDetailsPojo.setHospitalName("Apollo");
+            prescriptionDetailsPojo.setPrescriptionDate(new Date().toString());
+            prescriptionDetailsPojo.setPrescriptionImageFileName("http://www.grannyzhut.com/test/alu_posto.jpg");
+            prescriptionDetailsPojoList.add(prescriptionDetailsPojo);
+            AppClass.getInstance().setPrescriptionDetailsPojoList(prescriptionDetailsPojoList);
             Intent intent = new Intent(this, DocListingActivity.class);
             startActivity(intent);
         }

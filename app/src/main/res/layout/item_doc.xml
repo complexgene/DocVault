@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MissingPrefix"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_gradient_type"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:foreground="?attr/selectableItemBackground"
+    card_view:cardElevation="5dp"
+    card_view:cardCornerRadius="0dp"
+    >
+
+    <LinearLayout
+        android:id="@+id/llPrescriptionDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
+        android:background="@drawable/bg_gradient_type2"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tvDoctorsNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:drawablePadding="5dp"
+            android:textColor="@color/title_doctors_name"
+            android:textSize="10sp"
+            android:text="Doctor's Name"
+            android:maxLines="1"
+            fontPath="fonts/Titillium-Bold.otf"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tvDoctorsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
+            android:textColor="@color/title_doctors_name"
+            android:textSize="14sp"
+            android:text="Dr. Gary Richards"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tvHospitalNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:drawablePadding="5dp"
+            android:textColor="@color/title_doctors_name"
+            android:textSize="10sp"
+            android:text="Hospital's Name"
+            android:maxLines="1"
+            fontPath="fonts/Titillium-Bold.otf"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tvHospitalName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
+            android:textColor="@color/title_doctors_name"
+            android:textSize="14sp"
+            android:text="Apollo Hospitals"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tvUploadedDateTimeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:drawablePadding="5dp"
+            android:textColor="@color/title_doctors_name"
+            android:textSize="10sp"
+            android:text="Uploaded On"
+            android:maxLines="1"
+            fontPath="fonts/Titillium-Bold.otf"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tvUploadedDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
+            android:textColor="@color/title_doctors_name"
+            android:textSize="14sp"
+            android:text="22 Jan 2018 10:30PM"
+            android:maxLines="1"
+            fontPath="fonts/Titillium-Bold.otf"
+            android:ellipsize="end"/>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+

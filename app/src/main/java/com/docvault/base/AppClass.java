@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.ContextWrapper;
 
 import com.docvault.R;
+import com.docvault.pojo.PrescriptionDetailsPojo;
 import com.pixplicity.easyprefs.library.Prefs;
+
+import java.util.List;
 
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
@@ -13,6 +16,7 @@ import io.github.inflationx.viewpump.ViewPump;
 
 public class AppClass extends Application {
     private static AppClass instance;
+    private List<PrescriptionDetailsPojo> prescriptionDetailsPojoList;
 
     public static AppClass getInstance() {
         return instance;
@@ -45,5 +49,13 @@ public class AppClass extends Application {
                                 .setFontAttrId(R.attr.fontPath)
                                 .build()))
                 .build());
+    }
+
+    public List<PrescriptionDetailsPojo> getPrescriptionDetailsPojoList() {
+        return prescriptionDetailsPojoList;
+    }
+
+    public void setPrescriptionDetailsPojoList(List<PrescriptionDetailsPojo> prescriptionDetailsPojoList) {
+        this.prescriptionDetailsPojoList = prescriptionDetailsPojoList;
     }
 }
