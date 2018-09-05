@@ -103,7 +103,6 @@
                         android:textSize="14sp"
                         android:text="22 Jan 2018 10:30PM"
                         android:maxLines="1"
-                        fontPath="fonts/Titillium-Bold.otf"
                         android:ellipsize="end"/>
                 </LinearLayout>
 
@@ -174,7 +173,6 @@
                         android:textSize="14sp"
                         android:text="Cough, Fever, Headache"
                         android:maxLines="1"
-                        fontPath="fonts/Titillium-Bold.otf"
                         android:ellipsize="end"/>
                 </LinearLayout>
             </LinearLayout>
