@@ -1,17 +1,18 @@
 package com.docvault.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.docvault.DisplayPic;
 import com.docvault.R;
-import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.List;
 
@@ -39,7 +40,13 @@ public class PicAdapter extends RecyclerView.Adapter<PicAdapter.PicAdapterViewHo
         Glide.with(mContext).asBitmap().load(imageURL)
                 .into(holder.ivPrescription);
 
-        holder.ivPrescription.setOnClickListener(v -> Toast.makeText(mContext, "Will zoom the image next time", Toast.LENGTH_SHORT).show());
+        holder.ivPrescription.setOnClickListener(v -> openImageDisplayActivity(imageURL));
+    }
+
+    private void openImageDisplayActivity(String imgURL) {
+        Intent intent = new Intent(mContext, DisplayPic.class);
+        intent.putExtra("IMG_URL", imgURL);
+        mContext.startActivity(intent);
     }
 
     @Override
@@ -48,11 +55,12 @@ public class PicAdapter extends RecyclerView.Adapter<PicAdapter.PicAdapterViewHo
     }
 
     public class PicAdapterViewHolder extends RecyclerView.ViewHolder {
-        private CircularImageView ivPrescription;
+        private ImageButton ivPrescription;
+        private ImageView ivPrescriptionFullScreen;
         public PicAdapterViewHolder(View docView) {
             super(docView);
             ivPrescription = docView.findViewById(R.id.ivPrescription);
-            ivPrescription.setShadowGravity(CircularImageView.ShadowGravity.CENTER);
+            ivPrescriptionFullScreen = docView.findViewById(R.id.ivPrescriptionFullScreen);
         }
     }
 }

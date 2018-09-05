@@ -8,6 +8,7 @@ public class PrescriptionDetailsPojo implements Serializable{
     private String doctorName;
     private String hospitalName;
     private String prescriptionDate;
+    private String symptoms;
     private List<String> prescriptionImageFiles;
 
     public String getDoctorName() {
@@ -49,5 +50,13 @@ public class PrescriptionDetailsPojo implements Serializable{
 
     public void setPrescriptionImageFiles(List<String> prescriptionImageFiles) {
         this.prescriptionImageFiles = prescriptionImageFiles;
+    }
+
+    public String getSymptoms() {
+        return symptoms;
+    }
+
+    public void setSymptoms(String symptoms) {
+        this.symptoms = symptoms;
     }
 }

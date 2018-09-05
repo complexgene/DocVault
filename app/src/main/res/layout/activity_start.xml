@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:alpha="0.6"
+        android:alpha="0.8"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="bottom|center"
         >
         <LinearLayout
             android:layout_width="wrap_content"
@@ -27,23 +27,24 @@
             >
             <TextView
                 android:id="@+id/tvOrderId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 fontPath="fonts/Titillium-Bold"
-                android:textColor="#1a237e"
+                android:textColor="#ffca28"
                 android:textStyle="bold"
                 android:textSize="62dp"
                 android:text = "DocVault"
                 tools:ignore="MissingPrefix" />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="80dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textSize="20dp"
-                android:textColor="#4527a0"
+                android:textColor="#ffca28"
                 android:textStyle="italic"
                 android:text = "@string/tag_line"/>
         </LinearLayout>

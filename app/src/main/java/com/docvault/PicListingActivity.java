@@ -1,6 +1,7 @@
 package com.docvault;
 
 import android.Manifest;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -24,6 +25,8 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 public class PicListingActivity extends AppCompatActivity {
 
     private RecyclerView rvImageListing;
@@ -40,6 +43,12 @@ public class PicListingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pic_listing);
         init();
         setUpPicListing();
+    }
+
+    /* For supporting custom font */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     private void init() {

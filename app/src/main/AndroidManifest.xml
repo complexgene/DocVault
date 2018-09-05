@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.docvault">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -29,7 +29,8 @@
         <activity
             android:name=".PicListingActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".UploadDocActivity"></activity>
+        <activity android:name=".UploadDocActivity" />
+        <activity android:name=".DisplayPic"></activity>
     </application>
 
 </manifest>

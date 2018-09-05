@@ -14,7 +14,10 @@ import android.widget.Toast;
 
 import com.docvault.PicListingActivity;
 import com.docvault.R;
+import com.docvault.base.AppClass;
 import com.docvault.pojo.PrescriptionDetailsPojo;
+import com.docvault.pojo.UserDetails;
+import com.docvault.service.PreferenceService;
 
 import java.util.List;
 
@@ -22,10 +25,12 @@ public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DocAdapterViewHo
 
     private Context mContext;
     private List<PrescriptionDetailsPojo> prescriptionDetailsPojoList;
+    PreferenceService preferenceService;
 
     public DocAdapter(Context mContext, List<PrescriptionDetailsPojo> prescriptionDetailsPojoList) {
         this.mContext = mContext;
         this.prescriptionDetailsPojoList = prescriptionDetailsPojoList;
+        preferenceService = new PreferenceService();
     }
 
     @NonNull
@@ -41,13 +46,21 @@ public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DocAdapterViewHo
         holder.tvDoctorsName.setText(prescriptionDetails.getDoctorName());
         holder.tvHospitalName.setText(prescriptionDetails.getHospitalName());
         holder.tvUploadedDateTime.setText(prescriptionDetails.getPrescriptionDate());
+        holder.tvSymptoms.setText(prescriptionDetails.getSymptoms());
         holder.llPrescriptionDetails.setOnClickListener(v -> goInsidePicListingActivity(position));
         holder.ivDeleteDocEntry.setOnClickListener(v->{
             prescriptionDetailsPojoList.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, getItemCount());
             Toast.makeText(mContext, "Item Deleted", Toast.LENGTH_SHORT).show();
+            updateUserDetailsInPrefs();
         });
+    }
+
+    private void updateUserDetailsInPrefs() {
+        UserDetails userDetails = AppClass.getInstance().getUserDetails();
+        userDetails.setPrescriptionDetailsPojoList(prescriptionDetailsPojoList);
+        preferenceService.writeUserDetailsToPrefs(userDetails);
     }
 
     private void goInsidePicListingActivity(int position) {
@@ -62,7 +75,7 @@ public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DocAdapterViewHo
     }
 
     public class DocAdapterViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvDoctorsName, tvHospitalName, tvUploadedDateTime;
+        private TextView tvDoctorsName, tvHospitalName, tvUploadedDateTime, tvSymptoms;
         private LinearLayout llPrescriptionDetails;
         private ImageView ivDeleteDocEntry;
         public DocAdapterViewHolder(View docView) {
@@ -70,6 +83,7 @@ public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DocAdapterViewHo
             tvDoctorsName = docView.findViewById(R.id.tvDoctorsName);
             tvHospitalName = docView.findViewById(R.id.tvHospitalName);
             tvUploadedDateTime = docView.findViewById(R.id.tvUploadedDateTime);
+            tvSymptoms = docView.findViewById(R.id.tvSymptoms);
             ivDeleteDocEntry = docView.findViewById(R.id.ivDeleteDocEntry);
             llPrescriptionDetails = docView.findViewById(R.id.llPrescriptionDetails);
         }

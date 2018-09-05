@@ -30,7 +30,7 @@ public class StartActivity extends AppCompatActivity {
 
     private void init() {
         start_bg = findViewById(R.id.start_bg);
-        Bitmap bitmap = BlurImage.with(this).load(R.drawable.docvault_splash2).Async(false).getImageBlur();
+        Bitmap bitmap = BlurImage.with(this).load(R.drawable.splash).Async(false).getImageBlur();
         Drawable drawable = new BitmapDrawable(getResources(), bitmap);
         start_bg.setBackground(drawable);
     }

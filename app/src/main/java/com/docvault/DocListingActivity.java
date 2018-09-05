@@ -1,5 +1,6 @@
 package com.docvault;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -18,6 +19,8 @@ import com.jackandphantom.blurimage.BlurImage;
 
 import java.util.List;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 public class DocListingActivity extends AppCompatActivity {
 
     private RecyclerView rvDocListing;
@@ -31,12 +34,18 @@ public class DocListingActivity extends AppCompatActivity {
         setUpDocListing();
     }
 
+    /* For supporting custom font */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
+
     private void init() {
         rvDocListing = findViewById(R.id.rvDocListing);
         docListingBG = findViewById(R.id.docListingBG);
-        Bitmap bitmap = BlurImage.with(this).load(R.drawable.bg3).Async(false).getImageBlur();
-        Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-        docListingBG.setBackground(drawable);
+//        Bitmap bitmap = BlurImage.with(this).load(R.drawable.bg3).Async(false).getImageBlur();
+//        Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+//        docListingBG.setBackground(drawable);
     }
 
     private void setUpDocListing() {
