@@ -1,10 +1,14 @@
 package com.docvault.pojo;
 
-public class PrescriptionDetailsPojo {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PrescriptionDetailsPojo implements Serializable{
     private String doctorName;
     private String hospitalName;
     private String prescriptionDate;
-    private String prescriptionImageFileName;
+    private List<String> prescriptionImageFiles;
 
     public String getDoctorName() {
         return doctorName;
@@ -30,19 +34,20 @@ public class PrescriptionDetailsPojo {
         this.prescriptionDate = prescriptionDate;
     }
 
-    public String getPrescriptionImageFileName() {
-        return prescriptionImageFileName;
-    }
-
-    public void setPrescriptionImageFileName(String prescriptionImageFileName) {
-        this.prescriptionImageFileName = prescriptionImageFileName;
-    }
-
     public String getKey() {
         return getDoctorName() + "_" + getHospitalName() + "_" + getPrescriptionDate();
     }
 
-    public String getData() {
-        return getDoctorName() + "_" + getHospitalName() + "_" + getPrescriptionDate() + "_" + getPrescriptionImageFileName();
+    public PrescriptionDetailsPojo getData() {
+        return this;
+    }
+
+    public List<String> getPrescriptionImageFiles() {
+        if(prescriptionImageFiles == null) prescriptionImageFiles = new ArrayList<>();
+        return prescriptionImageFiles;
+    }
+
+    public void setPrescriptionImageFiles(List<String> prescriptionImageFiles) {
+        this.prescriptionImageFiles = prescriptionImageFiles;
     }
 }

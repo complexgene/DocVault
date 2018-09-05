@@ -7,104 +7,116 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_gradient_type"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
     android:foreground="?attr/selectableItemBackground"
     card_view:cardElevation="5dp"
     card_view:cardCornerRadius="0dp"
     >
-
-    <LinearLayout
-        android:id="@+id/llPrescriptionDetails"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingRight="10dp"
-        android:paddingEnd="10dp"
-        android:background="@drawable/bg_gradient_type2"
-        android:orientation="vertical"
+        android:background="@drawable/bg_gradient_type4"
         >
-        <TextView
-            android:id="@+id/tvDoctorsNameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="10dp"
-            android:drawablePadding="5dp"
-            android:textColor="@color/title_doctors_name"
-            android:textSize="10sp"
-            android:text="Doctor's Name"
-            android:maxLines="1"
-            fontPath="fonts/Titillium-Bold.otf"
-            android:ellipsize="end"/>
-
-        <TextView
-            android:id="@+id/tvDoctorsName"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/ivDeleteDocEntry"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="right|top"
+            android:src="@drawable/ic_delete"
+            />
+        <LinearLayout
+            android:id="@+id/llPrescriptionDetails"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:drawablePadding="10dp"
-            android:textColor="@color/title_doctors_name"
-            android:textSize="14sp"
-            android:text="Dr. Gary Richards"
-            android:maxLines="1"
-            android:ellipsize="end"/>
-
-        <TextView
-            android:id="@+id/tvHospitalNameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:paddingBottom="20dp"
             android:paddingRight="10dp"
-            android:drawablePadding="5dp"
-            android:textColor="@color/title_doctors_name"
-            android:textSize="10sp"
-            android:text="Hospital's Name"
-            android:maxLines="1"
-            fontPath="fonts/Titillium-Bold.otf"
-            android:ellipsize="end"/>
+            android:paddingEnd="10dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/tvDoctorsNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                android:textColor="@color/title_doctors_name"
+                android:textSize="10sp"
+                android:text="Doctor's Name"
+                android:maxLines="1"
+                fontPath="fonts/Titillium-Bold.otf"
+                android:ellipsize="end"/>
 
-        <TextView
-            android:id="@+id/tvHospitalName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:drawablePadding="10dp"
-            android:textColor="@color/title_doctors_name"
-            android:textSize="14sp"
-            android:text="Apollo Hospitals"
-            android:maxLines="1"
-            android:ellipsize="end"/>
+            <TextView
+                android:id="@+id/tvDoctorsName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:drawablePadding="10dp"
+                android:textColor="@color/title_doctors_name"
+                android:textSize="14sp"
+                android:text="Dr. Gary Richards"
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
-        <TextView
-            android:id="@+id/tvUploadedDateTimeLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="10dp"
-            android:drawablePadding="5dp"
-            android:textColor="@color/title_doctors_name"
-            android:textSize="10sp"
-            android:text="Uploaded On"
-            android:maxLines="1"
-            fontPath="fonts/Titillium-Bold.otf"
-            android:ellipsize="end"/>
+            <TextView
+                android:id="@+id/tvHospitalNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                android:textColor="@color/title_doctors_name"
+                android:textSize="10sp"
+                android:text="Hospital's Name"
+                android:maxLines="1"
+                fontPath="fonts/Titillium-Bold.otf"
+                android:ellipsize="end"/>
 
-        <TextView
-            android:id="@+id/tvUploadedDateTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:drawablePadding="10dp"
-            android:textColor="@color/title_doctors_name"
-            android:textSize="14sp"
-            android:text="22 Jan 2018 10:30PM"
-            android:maxLines="1"
-            fontPath="fonts/Titillium-Bold.otf"
-            android:ellipsize="end"/>
+            <TextView
+                android:id="@+id/tvHospitalName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:drawablePadding="10dp"
+                android:textColor="@color/title_doctors_name"
+                android:textSize="14sp"
+                android:text="Apollo Hospitals"
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
+            <TextView
+                android:id="@+id/tvUploadedDateTimeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                android:textColor="@color/title_doctors_name"
+                android:textSize="10sp"
+                android:text="Added On"
+                android:maxLines="1"
+                fontPath="fonts/Titillium-Bold.otf"
+                android:ellipsize="end"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvUploadedDateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:drawablePadding="10dp"
+                android:textColor="@color/title_doctors_name"
+                android:textSize="14sp"
+                android:text="22 Jan 2018 10:30PM"
+                android:maxLines="1"
+                fontPath="fonts/Titillium-Bold.otf"
+                android:ellipsize="end"/>
+
+        </LinearLayout>
+    </FrameLayout>
 
 </android.support.v7.widget.CardView>
 

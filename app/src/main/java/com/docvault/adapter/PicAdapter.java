@@ -10,20 +10,19 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.docvault.R;
-import com.docvault.pojo.PrescriptionDetailsPojo;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.List;
 
 public class PicAdapter extends RecyclerView.Adapter<PicAdapter.PicAdapterViewHolder>{
 
     private Context mContext;
-    private List<PrescriptionDetailsPojo> prescriptionDetailsPojoList;
+    private List<String> imageURLs;
 
-    public PicAdapter(Context mContext, List<PrescriptionDetailsPojo> prescriptionDetailsPojoList) {
+    public PicAdapter(Context mContext, List<String> imageURLs) {
         this.mContext = mContext;
-        this.prescriptionDetailsPojoList = prescriptionDetailsPojoList;
+        this.imageURLs = imageURLs;
     }
 
     @NonNull
@@ -35,31 +34,25 @@ public class PicAdapter extends RecyclerView.Adapter<PicAdapter.PicAdapterViewHo
 
     @Override
     public void onBindViewHolder(@NonNull PicAdapterViewHolder holder, int position) {
-        PrescriptionDetailsPojo prescriptionDetails = prescriptionDetailsPojoList.get(position);
+        String imageURL = imageURLs.get(position);
 
-        String imageURL = prescriptionDetails.getPrescriptionImageFileName();
-
-        Glide.with(mContext).load(imageURL).apply(new RequestOptions().placeholder(R.drawable.ic_login))
+        Glide.with(mContext).asBitmap().load(imageURL)
                 .into(holder.ivPrescription);
 
-        holder.ivPrescription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "Will zoom the image next time", Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.ivPrescription.setOnClickListener(v -> Toast.makeText(mContext, "Will zoom the image next time", Toast.LENGTH_SHORT).show());
     }
 
     @Override
     public int getItemCount() {
-        return prescriptionDetailsPojoList.size();
+        return imageURLs.size();
     }
 
     public class PicAdapterViewHolder extends RecyclerView.ViewHolder {
-        private ImageView ivPrescription;
+        private CircularImageView ivPrescription;
         public PicAdapterViewHolder(View docView) {
             super(docView);
             ivPrescription = docView.findViewById(R.id.ivPrescription);
+            ivPrescription.setShadowGravity(CircularImageView.ShadowGravity.CENTER);
         }
     }
 }

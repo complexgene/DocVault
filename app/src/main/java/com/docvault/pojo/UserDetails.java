@@ -1,12 +1,22 @@
 package com.docvault.pojo;
 
-public class UserDetails {
+import android.util.Log;
+
+import com.google.gson.Gson;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class UserDetails implements Serializable{
     private String userName;
     private String password;
+    private List<PrescriptionDetailsPojo> prescriptionDetailsPojoList;
 
     public UserDetails(String userName, String password) {
         this.userName = userName;
         this.password = password;
+        prescriptionDetailsPojoList = new ArrayList<>();
     }
 
     public String getUserName() {
@@ -29,12 +39,11 @@ public class UserDetails {
         return getUserName() + "_" + getPassword();
     }
 
-    public String getValue() {
-        return toString();
+    public List<PrescriptionDetailsPojo> getPrescriptionDetailsPojoList() {
+        return prescriptionDetailsPojoList;
     }
 
-    @Override
-    public String toString() {
-        return getUserName() + "_" + getPassword();
+    public void setPrescriptionDetailsPojoList(List<PrescriptionDetailsPojo> prescriptionDetailsPojoList) {
+        this.prescriptionDetailsPojoList = prescriptionDetailsPojoList;
     }
 }

@@ -2,4 +2,8 @@
     <string name="app_name">DocVault</string>
     <string name="tag_line">Tracking Your Medical Docs</string>
     <string name="register_now">Not Registered yet? <u>Register Now</u></string>
+    <string name="btnTxtContinue">Continue</string>
+    <string name="btnTxtregister">Register</string>
+    <string name="add_document">ADD NEW(+)</string>
+    <string name="add_picture">Add Picture</string>
 </resources>
