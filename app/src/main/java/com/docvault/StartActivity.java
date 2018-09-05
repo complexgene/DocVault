@@ -8,9 +8,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.docvault.base.AppClass;
+import com.docvault.pojo.UserDetails;
+import com.docvault.service.PreferenceService;
 import com.jackandphantom.blurimage.BlurImage;
 import com.pixplicity.easyprefs.library.Prefs;
 
@@ -19,6 +21,7 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 public class StartActivity extends AppCompatActivity {
 
     private ImageView start_bg;
+    private PreferenceService preferenceService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class StartActivity extends AppCompatActivity {
 
     private void init() {
         start_bg = findViewById(R.id.start_bg);
+        preferenceService = new PreferenceService();
         Bitmap bitmap = BlurImage.with(this).load(R.drawable.splash).Async(false).getImageBlur();
         Drawable drawable = new BitmapDrawable(getResources(), bitmap);
         start_bg.setBackground(drawable);
@@ -44,12 +48,24 @@ public class StartActivity extends AppCompatActivity {
     private void openNextActivity() {
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
-            Intent logInIntent = new Intent(getApplicationContext(), LoginActivity.class);
-            logInIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            logInIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            logInIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(logInIntent);
-        }, 4000);
+            int loggedInStatus = preferenceService.getLoggedInStatus();
+            if(loggedInStatus == 1) {
+                UserDetails userDetails = preferenceService.getLastLoggedInUserData();
+                AppClass.getInstance().setUserDetails(userDetails);
+                Intent logInIntent = new Intent(getApplicationContext(), DocListingActivity.class);
+                logInIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                logInIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                logInIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(logInIntent);
+            } else {
+                Intent logInIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                logInIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                logInIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                logInIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(logInIntent);
+            }
+
+        }, 3000);
     }
 
     @Override

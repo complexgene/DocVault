@@ -33,33 +33,65 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
                 android:background="#ffcc80"/>
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="openUploadDocIntent"
-                android:layout_centerHorizontal="true"
                 android:layout_gravity="right"
+                android:gravity="right"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:background="@null"
-                app:cardCornerRadius="15dp">
-
-                <TextView
-                    android:id="@+id/tvTimer"
+                >
+                <android.support.v7.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:textStyle="bold"
-                    android:background="#ff9100"
-                    android:textColor="@color/white"
-                    android:text="@string/add_document"
-                    android:textSize="12sp"/>
+                    android:onClick="openUploadDocIntent"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"
+                    app:cardCornerRadius="15dp">
 
-            </android.support.v7.widget.CardView>
+                    <TextView
+                        android:id="@+id/tvTimer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:textStyle="bold"
+                        android:background="#ff9100"
+                        android:textColor="@color/white"
+                        android:text="@string/add_document"
+                        android:textSize="12sp"/>
+
+                </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:id="@+id/btnSignOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="userSignOut"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"
+                    app:cardCornerRadius="15dp">
+
+                    <TextView
+                        android:id="@+id/tvLogOut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:textStyle="bold"
+                        android:background="#ff9100"
+                        android:textColor="@color/white"
+                        android:text="Sign Out"
+                        android:textSize="12sp"/>
+
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"

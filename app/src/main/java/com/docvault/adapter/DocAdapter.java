@@ -53,14 +53,15 @@ public class DocAdapter extends RecyclerView.Adapter<DocAdapter.DocAdapterViewHo
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, getItemCount());
             Toast.makeText(mContext, "Item Deleted", Toast.LENGTH_SHORT).show();
-            updateUserDetailsInPrefs();
+            updateUserDetailsInPrefsAndLastLogggedIn();
         });
     }
 
-    private void updateUserDetailsInPrefs() {
+    private void updateUserDetailsInPrefsAndLastLogggedIn() {
         UserDetails userDetails = AppClass.getInstance().getUserDetails();
         userDetails.setPrescriptionDetailsPojoList(prescriptionDetailsPojoList);
         preferenceService.writeUserDetailsToPrefs(userDetails);
+        preferenceService.updateLastLoggedInUserData(userDetails);
     }
 
     private void goInsidePicListingActivity(int position) {

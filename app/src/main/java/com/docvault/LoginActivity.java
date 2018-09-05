@@ -3,13 +3,11 @@ package com.docvault;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -18,17 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.docvault.base.AppClass;
-import com.docvault.pojo.PrescriptionDetailsPojo;
 import com.docvault.pojo.UserDetails;
 import com.docvault.service.PreferenceService;
 import com.docvault.service.ValidationService;
-import com.google.gson.Gson;
 import com.jackandphantom.blurimage.BlurImage;
-import com.pixplicity.easyprefs.library.Prefs;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
@@ -133,7 +124,10 @@ public class LoginActivity extends AppCompatActivity {
     private void tryLogin() {
         UserDetails userDetails = new UserDetails(tvUserName.getText().toString(), tvPassword.getText().toString());
         if(validationService.checkIfUserAvailable(this, userDetails)) {
-            preferenceService.readUserDetailsFromPrefs(userDetails);
+            UserDetails retrievedUserDetailsFromPrefs = preferenceService.readUserDetailsFromPrefs(userDetails);
+            AppClass.getInstance().setUserDetails(retrievedUserDetailsFromPrefs);
+            preferenceService.setLoggedInStatus(1);
+            preferenceService.updateLastLoggedInUserData(retrievedUserDetailsFromPrefs);
             Intent intent = new Intent(this, DocListingActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -17,6 +17,7 @@ import com.codekidlabs.storagechooser.StorageChooser;
 import com.docvault.adapter.PicAdapter;
 import com.docvault.base.AppClass;
 import com.docvault.pojo.PrescriptionDetailsPojo;
+import com.docvault.pojo.UserDetails;
 import com.docvault.service.PreferenceService;
 import com.docvault.service.ValidationService;
 import com.jackandphantom.blurimage.BlurImage;
@@ -36,6 +37,7 @@ public class PicListingActivity extends AppCompatActivity {
     private ValidationService validationService = new ValidationService();
     private PreferenceService preferenceService = new PreferenceService();
     private ImageView ivPicListngBG;
+    private int itemPos = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class PicListingActivity extends AppCompatActivity {
     }
 
     private void setUpPicListing() {
-        int itemPos = getIntent().getIntExtra("ITEM_POS", -1);
+        itemPos = getIntent().getIntExtra("ITEM_POS", -1);
         if (itemPos == -1) onBackPressed();
         prescriptionDetailsPojo = AppClass.getInstance().getUserDetails().getPrescriptionDetailsPojoList().get(itemPos);
         for(String imageloc : prescriptionDetailsPojo.getPrescriptionImageFiles()) {
@@ -111,8 +113,10 @@ public class PicListingActivity extends AppCompatActivity {
     }
     public void addImage(String filePath) {
         if(validationService.checkDetailsFilledTextView(this, filePath)) {
-            prescriptionDetailsPojo.getPrescriptionImageFiles().add(filePath);
-            preferenceService.storeUserDataDetails();
+            UserDetails userDetails = AppClass.getInstance().getUserDetails();
+            userDetails.getPrescriptionDetailsPojoList().get(itemPos).getPrescriptionImageFiles().add(filePath);
+            preferenceService.writeUserDetailsToPrefs(userDetails);
+            preferenceService.updateLastLoggedInUserData(userDetails);
             Toast.makeText(this, "New Image Added", Toast.LENGTH_SHORT).show();
             this.finish();
         }

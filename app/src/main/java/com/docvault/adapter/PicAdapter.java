@@ -37,7 +37,7 @@ public class PicAdapter extends RecyclerView.Adapter<PicAdapter.PicAdapterViewHo
     public void onBindViewHolder(@NonNull PicAdapterViewHolder holder, int position) {
         String imageURL = imageURLs.get(position);
 
-        Glide.with(mContext).asBitmap().load(imageURL)
+        Glide.with(mContext).load(imageURL)
                 .into(holder.ivPrescription);
 
         holder.ivPrescription.setOnClickListener(v -> openImageDisplayActivity(imageURL));
@@ -56,11 +56,9 @@ public class PicAdapter extends RecyclerView.Adapter<PicAdapter.PicAdapterViewHo
 
     public class PicAdapterViewHolder extends RecyclerView.ViewHolder {
         private ImageButton ivPrescription;
-        private ImageView ivPrescriptionFullScreen;
         public PicAdapterViewHolder(View docView) {
             super(docView);
             ivPrescription = docView.findViewById(R.id.ivPrescription);
-            ivPrescriptionFullScreen = docView.findViewById(R.id.ivPrescriptionFullScreen);
         }
     }
 }

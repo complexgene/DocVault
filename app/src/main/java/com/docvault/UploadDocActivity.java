@@ -6,7 +6,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.Formatter;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,9 +21,7 @@ import com.snatik.storage.Storage;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
@@ -78,7 +75,8 @@ public class UploadDocActivity extends AppCompatActivity {
             prescriptionDetailsPojo.setSymptoms(symptoms);
             UserDetails userDetails = AppClass.getInstance().getUserDetails();
             userDetails.getPrescriptionDetailsPojoList().add(prescriptionDetailsPojo);
-            preferenceService.storeUserDataDetails();
+            preferenceService.writeUserDetailsToPrefs(userDetails);
+            preferenceService.updateLastLoggedInUserData(userDetails);
             Toast.makeText(this, "New Entry Added! Add Images now!!", Toast.LENGTH_SHORT).show();
             this.finish();
         }

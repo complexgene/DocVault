@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.docvault.adapter.DocAdapter;
 import com.docvault.base.AppClass;
 import com.docvault.pojo.PrescriptionDetailsPojo;
+import com.docvault.service.PreferenceService;
 import com.jackandphantom.blurimage.BlurImage;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class DocListingActivity extends AppCompatActivity {
 
     private RecyclerView rvDocListing;
     private ImageView docListingBG;
+    private PreferenceService preferenceService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class DocListingActivity extends AppCompatActivity {
     private void init() {
         rvDocListing = findViewById(R.id.rvDocListing);
         docListingBG = findViewById(R.id.docListingBG);
+        preferenceService = new PreferenceService();
 //        Bitmap bitmap = BlurImage.with(this).load(R.drawable.bg3).Async(false).getImageBlur();
 //        Drawable drawable = new BitmapDrawable(getResources(), bitmap);
 //        docListingBG.setBackground(drawable);
@@ -58,13 +61,14 @@ public class DocListingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!exitApp) {
-            exitApp = !exitApp;
-            Toast.makeText(this, "Press BACK again to close", Toast.LENGTH_SHORT).show();
-        } else {
-            super.onBackPressed();
-            this.finish();
-        }
+        super.onBackPressed();
+//        if(!exitApp) {
+//            exitApp = !exitApp;
+//            Toast.makeText(this, "Press BACK again to close", Toast.LENGTH_SHORT).show();
+//        } else {
+//            super.onBackPressed();
+//            this.finish();
+//        }
     }
 
     @Override
@@ -76,5 +80,12 @@ public class DocListingActivity extends AppCompatActivity {
     public void openUploadDocIntent(View view) {
         Intent uploadDocIntent = new Intent(this, UploadDocActivity.class);
         startActivity(uploadDocIntent);
+    }
+
+    public void userSignOut(View view) {
+        preferenceService.setLoggedInStatus(0);
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
+        this.finish();
     }
 }

@@ -20,12 +20,23 @@ public class PreferenceService {
 
     public UserDetails readUserDetailsFromPrefs(UserDetails userDetails) {
         UserDetails userDetailsFromPrefs = gson.fromJson(Prefs.getString(userDetails.getKey(), null), UserDetails.class);
-        AppClass.getInstance().setUserDetails(userDetailsFromPrefs);
         return userDetailsFromPrefs;
     }
 
-    public void storeUserDataDetails() {
-        UserDetails userDetails = AppClass.getInstance().getUserDetails();
-        writeUserDetailsToPrefs(userDetails);
+
+    public int getLoggedInStatus() {
+        return Prefs.getInt("LOGGED_IN", -1);
+    }
+
+    public void setLoggedInStatus(int loggedInStatus) {
+        Prefs.putInt("LOGGED_IN", loggedInStatus);
+    }
+
+    public void updateLastLoggedInUserData(UserDetails userDetails) {
+        Prefs.putString("LAST_LOGGED_IN_USER", gson.toJson(userDetails));
+    }
+
+    public UserDetails getLastLoggedInUserData() {
+        return gson.fromJson(Prefs.getString("LAST_LOGGED_IN_USER", null), UserDetails.class);
     }
 }
